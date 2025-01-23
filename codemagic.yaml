@@ -7,7 +7,7 @@ workflows:
         publishing: 
             email:
                 recipients:
-                    - bjd00j@gmail.com.com
-            # notify:
-            #     success: true
-            #     failure: false
+                    - bjd00j@gmail.com
+                notify:
+                    success: true
+                    failure: false
