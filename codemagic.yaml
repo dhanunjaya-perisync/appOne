@@ -63,6 +63,54 @@
 #     artifacts:
 #       - android/app/build/outputs/**/*.apk
 #       - ios/build/**/*.app
+# workflows:
+#   sample-workflow:
+#     name: Codemagic Sample Workflow
+#     max_build_duration: 120
+#     instance_type: mac_mini_m2
+
+#     publishing:
+#       email:
+#         recipients:
+#           - bjd00j@gmail.com
+#         notify:
+#           success: true
+#           failure: false
+
+#     scripts:
+#       - name: Install dependencies
+#         script: |
+#           # Install Node.js dependencies
+#           npm install
+          
+#           # Install CocoaPods dependencies for iOS
+#           cd ios
+#           pod install
+#           cd ..
+
+#       - name: Clean Android Build
+#         script: |
+#           # Clean Android build (optional, but useful for fresh builds)
+#           cd android
+#           ./gradlew clean
+#           cd ..
+          
+#       - name: Build Android APK (Release)
+#         script: |
+#           # Build Android APK in release mode using Gradle
+#           cd android
+#           ./gradlew assembleRelease
+#           cd ..
+          
+#     #   - name: Build iOS
+#     #     script: |
+#     #       # Build iOS app in release configuration
+#     #       npx react-native run-ios --configuration Release
+
+#     artifacts:
+#       - android/app/build/outputs/**/*.apk
+#     #   - ios/build/**/*.app
+
 workflows:
   sample-workflow:
     name: Codemagic Sample Workflow
@@ -101,14 +149,24 @@ workflows:
           cd android
           ./gradlew assembleRelease
           cd ..
-          
-    #   - name: Build iOS
-    #     script: |
-    #       # Build iOS app in release configuration
-    #       npx react-native run-ios --configuration Release
+
+      - name: Build iOS App (Release)
+        script: |
+          # Archive the iOS app in release configuration using Xcode
+          cd ios
+          xcodebuild clean -workspace appOne.xcworkspace -scheme YourScheme -configuration Release -sdk iphoneos archive -archivePath $PWD/build/appOne.xcarchive
+          cd ..
+
+      - name: Export iOS IPA
+        script: |
+          # Export the iOS .ipa file from the archived build
+          cd ios
+          xcodebuild -exportArchive -archivePath $PWD/build/appOne.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build/ipa
+          cd ..
 
     artifacts:
       - android/app/build/outputs/**/*.apk
-    #   - ios/build/**/*.app
+      - ios/build/ipa/**/*.ipa
+
 
 
