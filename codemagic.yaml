@@ -120,7 +120,7 @@ workflows:
         script: |
           # Archive the iOS app in release configuration using Xcode
           cd ios
-          xcodebuild clean -workspace AwesomeProject.xcworkspace -scheme Release -configuration Release -sdk iphoneos archive -archivePath $PWD/build/AwesomeProject.xcarchive
+          xcodebuild clean -workspace AwesomeProject.xcworkspace -scheme AwesomeProject -configuration Release -sdk iphoneos archive -archivePath $PWD/build/AwesomeProject.xcarchive
           cd ..
 
       - name: Export iOS IPA
