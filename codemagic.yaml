@@ -106,6 +106,16 @@ workflows:
           failure: false
 
     scripts:
+     - name: "Prepare Code Signing"
+      script: |
+        # Install the certificate to the keychain
+        security create-keychain -p "" ios-build.keychain
+        security import /path/to/certificate.p12 -k ~/ios-build.keychain -P "$CM_IOS_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+        
+        # Install the provisioning profile
+        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+        cp /path/to/profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+        
       - name: Install dependencies
         script: |
           # Install Node.js dependencies
@@ -115,6 +125,7 @@ workflows:
           cd ios
           pod install
           cd ..
+        
 
       - name: Build iOS App (Release)
         script: |
