@@ -8,6 +8,6 @@ workflows:
             email:
                 recipients:
                     - bjd00j@gmail.com.com
-            notify:
-                success: true
-                failure: false
+            # notify:
+            #     success: true
+            #     failure: false
