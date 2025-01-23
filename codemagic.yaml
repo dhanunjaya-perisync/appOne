@@ -7,8 +7,7 @@ workflows:
     publishing: 
         email:
             recipients:
-                - user_1@example.com
-                - user_2@example.com
+                - bjd00j@gmail.com.com
         notify:
             success: true
             failure: false
