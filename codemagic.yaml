@@ -50,11 +50,11 @@ workflows:
     #       cd ios
     #       xcodebuild -exportArchive -archivePath $PWD/build/appOne.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build/ipa
     #       cd ..
-     - name: Build ipa for distribution
-       script: | 
-        xcode-project build-ipa \
-            --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+        - name: Build ipa for distribution
+        script: | 
+            xcode-project build-ipa \
+                --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
+                --scheme "$XCODE_SCHEME"
 
     artifacts:
     #   - android/app/build/outputs/**/*.apk
