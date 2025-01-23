@@ -42,7 +42,7 @@ workflows:
           # Archive the iOS app in release configuration using Xcode
           cd ios
         #   xcodebuild clean -workspace appOne.xcworkspace -scheme Release -configuration Release -sdk iphoneos archive -archivePath $PWD/build/appOne.xcarchive
-            xcodebuild clean -workspace appOne.xcworkspace -scheme Release -configuration Release -sdk iphoneos archive -archivePath ios/build/appOne.xcarchive
+          xcodebuild clean -workspace appOne.xcworkspace -scheme Release -configuration Release -sdk iphoneos archive -archivePath ios/build/appOne.xcarchive
           cd ..
 
       - name: Export iOS IPA
