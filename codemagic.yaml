@@ -102,13 +102,13 @@ workflows:
           ./gradlew assembleRelease
           cd ..
           
-      - name: Build iOS
-        script: |
-          # Build iOS app in release configuration
-          npx react-native run-ios --configuration Release
+    #   - name: Build iOS
+    #     script: |
+    #       # Build iOS app in release configuration
+    #       npx react-native run-ios --configuration Release
 
     artifacts:
       - android/app/build/outputs/**/*.apk
-      - ios/build/**/*.app
+    #   - ios/build/**/*.app
 
 
