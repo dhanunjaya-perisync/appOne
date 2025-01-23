@@ -17,6 +17,52 @@
 #         script: npx react-native run-android --variant=release
 #       - name: Build iOS
 #         script: npx react-native run-ios --configuration Release
+# - - - - - - - - - -  - - - - - - - - - - - - - - -- -
+# workflows:
+#   sample-workflow:
+#     name: Codemagic Sample Workflow
+#     max_build_duration: 120
+#     instance_type: mac_mini_m2
+
+#     publishing:
+#       email:
+#         recipients:
+#           - bjd00j@gmail.com
+#         notify:
+#           success: true
+#           failure: true
+
+#     scripts:
+#       - name: Install dependencies
+#         script: |
+#           # Install Node.js dependencies
+#           npm install
+          
+#           # Install CocoaPods dependencies for iOS
+#           cd ios
+#           pod install
+#           cd ..
+
+#       - name: Clean Android Build
+#         script: |
+#           # Clean Android build (optional, but useful for fresh builds)
+#           cd android
+#           ./gradlew clean
+#           cd ..
+          
+#       - name: Build APK
+#         script: |
+#           # Build Android APK in release mode
+#           npx react-native run-android --variant=release
+
+#       - name: Build iOS
+#         script: |
+#           # Build iOS app in release configuration
+#           npx react-native run-ios --configuration Release
+
+#     artifacts:
+#       - android/app/build/outputs/**/*.apk
+#       - ios/build/**/*.app
 workflows:
   sample-workflow:
     name: Codemagic Sample Workflow
@@ -30,12 +76,6 @@ workflows:
         notify:
           success: true
           failure: false
-
-    # caching:
-    #   paths:
-    #     - node_modules
-    #     - ios/Pods
-    #     - android/.gradle
 
     scripts:
       - name: Install dependencies
@@ -55,11 +95,13 @@ workflows:
           ./gradlew clean
           cd ..
           
-      - name: Build APK
+      - name: Build Android APK (Release)
         script: |
-          # Build Android APK in release mode
-          npx react-native run-android --variant=release
-
+          # Build Android APK in release mode using Gradle
+          cd android
+          ./gradlew assembleRelease
+          cd ..
+          
       - name: Build iOS
         script: |
           # Build iOS app in release configuration
@@ -68,4 +110,5 @@ workflows:
     artifacts:
       - android/app/build/outputs/**/*.apk
       - ios/build/**/*.app
+
 
