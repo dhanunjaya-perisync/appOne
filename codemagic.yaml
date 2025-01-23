@@ -11,3 +11,8 @@ workflows:
                 notify:
                     success: true
                     failure: false
+    scripts:
+        - name: Build apk
+        - script: react native build apk --release
+        - name: Build iOS
+        - script: react native build ios
