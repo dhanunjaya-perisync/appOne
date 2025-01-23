@@ -1,18 +1,19 @@
 workflows:
-    sample-workflow:
-        name: Codemagic Sample Workflow
-        max_build_duration: 120
-        instance_type: mac_mini_m2
-        
-        publishing: 
-            email:
-                recipients:
-                    - bjd00j@gmail.com
-                notify:
-                    success: true
-                    failure: false
+  sample-workflow:
+    name: Codemagic Sample Workflow
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+
+    publishing:
+      email:
+        recipients:
+          - bjd00j@gmail.com
+        notify:
+          success: true
+          failure: false
+
     scripts:
-        - name: Build apk
-        - script: react native build apk --release
-        - name: Build iOS
-        - script: react native build ios
+      - name: Build APK
+        script: npx react-native run-android --variant=release
+      - name: Build iOS
+        script: npx react-native run-ios --configuration Release
