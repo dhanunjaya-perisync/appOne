@@ -31,11 +31,11 @@ workflows:
           success: true
           failure: false
 
-    caching:
-      paths:
-        - node_modules
-        - ios/Pods
-        - android/.gradle
+    # caching:
+    #   paths:
+    #     - node_modules
+    #     - ios/Pods
+    #     - android/.gradle
 
     scripts:
       - name: Install dependencies
@@ -68,3 +68,4 @@ workflows:
     artifacts:
       - android/app/build/outputs/**/*.apk
       - ios/build/**/*.app
+
