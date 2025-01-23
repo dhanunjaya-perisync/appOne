@@ -4,7 +4,7 @@
     <key>method</key>
     <string>development</string> <!-- Distribution method: "development" for testing on devices -->
     <key>teamID</key>
-    <string>dhananjay@perisync.com</string> <!-- Replace with your Apple Developer Team ID -->
+    <string>CU67VFP3LC</string> <!-- Replace with your Apple Developer Team ID -->
     <key>uploadBitcode</key>
     <false/> <!-- Bitcode is not needed for Development -->
     <key>uploadSymbols</key>
